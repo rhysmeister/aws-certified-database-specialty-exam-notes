@@ -28,4 +28,9 @@
   * Should be single-AZ only (can downgrade, move and then convert back to multi-az)
   * Must delete read-replicas (can redeploy after move).
   * Subnets we want to migrate to must be in the same AZ as the source.
+  * You cannot move the VPC of an Aurora Cluster/Instance in this way.
 * Aurora PostgreSQL has a [Cluster Cache Management](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.cluster-cache-mgmt.html) feature to avoid cold-starts after failover. This feature requires the same db instance types.
+* Reboot with failover option is suppoorted by RDS but not Aurora.
+* DynamoDB - when a table is restored we must reapply IAM Policies and role, TTL Settings and Auto-Scaling POlicies.
+* DynamoDB - Strongly consistent reads are constantly passed through DAX to DynamoDB.
+* DynamoDB - Items in a table can only be up to 400KB.

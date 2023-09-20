@@ -3,6 +3,16 @@ Notes for the AWS Certified Database – Specialty
 
 # Amazon RDS
 
+|Type|Max Replicas|Serverless Option|DB Cloning|Blue/Green Deployments
+|----|----|---|---|
+|MySQL|15|No|No|Yes|
+|MariaDB|15|No|No|Yes|
+|PostgreSQL|15|No|No|No|
+|Oracle|5|No|No|No|
+|MSSQL|5|No|No|No|
+|Aurora MySQL|15|Yes|Yes|Yes|
+|Aurora PostgreSQL|15|Yes|Yes|No|
+
 * 3 Storage Types available to RDS
   * General Purpose SSD (gp2)
     * Broad use cases.
@@ -41,13 +51,39 @@ Notes for the AWS Certified Database – Specialty
   * *Timeout action* - The action to take when a capacity modification times out because it can’t find a scaling point.
   * *Pause after inactivity* -  The amount of time with no database traffic to scale to zero processing capacity. When database traffic resumes, Aurora automatically resumes processing capacity and scales to handle the traffic.
 
-
-
 # Amazon DynamoDB
 
+* Non-relational, key-value/wide-column and document database.
+* Single-digit millisecond performance.
+* Fully managed database with built-in security, backup and restore, and in-memory caching.
+* Internet-scale application.
+* Max Item Size = 400KB
+  * The attribute name counts towards the size limit.
 * A local secondary index maintains an alternate sort key for a given partition key value. A local secondary index also contains a copy of some or all of the attributes from its base table; you specify which attributes are projected into the local secondary index when you create the table. The data in a local secondary index is organized by the same partition key as the base table, but with a different sort key. This lets you access data items efficiently across this different dimension. For greater query or scan flexibility, you can create up to five local secondary indexes per table. [Local Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/LSI.html)
 * A DynamoDB TTL Index process can take up to 48 hours to delete an expired item.
 * [TTL Index](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html)
+* [Local & Global Secondary Indexes](https://www.dynamodbguide.com/local-or-global-choosing-a-secondary-index-type-in-dynamo-db/)
+* Global Vs Local Secondary Indexes
+  * GSIs can be created at any time, LSIs must be created when the table is created.
+  * LSI have a 10GB collection limit (partition key) - know your data!
+  * LSI must use the same partition key as the base table - GSI no such limit.
+  * LSIs use capacity from the base table, GSIs have their own capacity settings.
+  * LSI - by default all ready are eventually consistent, ConsistentRead option can be used if required, GSIs - all reads are eventually consistent.
+  * Read/Write Capacity Mode & Throughput
+    * Can change twice in 24 hours.
+    * Transactional read requests require two read capacity units to perform one read per second for items up to 4 KB.
+    * Transactional write requests require two write capacity units to perform one write per second for items up to 1 KB.
+    * RCU - Read Capacity Units
+      * > 4KB
+      * 1 consistent read or 2 eventually consistent reads
+    * WCU - Write Capacity Unit
+      * > 1KB
+      * Transactional write requests require 2 WCUs to perform 1 w/s up to 1KB.
+  * You may create 20 global secondary indexes and 5 local secondary indexes per table.
+  * Secondary Index Attributes - specify which attributes you want to project into the index.
+    * *KEYS_ONLY* - Only include the keys for the index and partition, sort values.
+    * *ALL* - Include all attributes in the index.
+    * *INCLUDE* - Specify which attributes to include in the index.
 
 # Amazon DAX
 
@@ -67,7 +103,46 @@ Notes for the AWS Certified Database – Specialty
 # Amazon ElastiCache
 
 * Elasticache for Redis
+  * Not Multi-Threaded
+  * Auto detection and recovery of failed nodes
+  * Multi-AZ with failover
+  * Cluster Mode Disabled - 1 shard, 0-5 replicas.
+  * Cluster Mode Enabled - Supports up to 250 shards (<v5.0.6), 0-5 replicas per shard.
+    * Actual limits dpeend on number of shards/replicas, see [Working with Shards](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Shards.html)
+  * Node or shard limit can be increased to 500 (if v5.0.6 or higher)
+  * Data is presistent. Can be used as a datastore.
+  * Self-service updates (must apply yourself)
+  * Backup/Snapshot capabilities
+  * Complex Dtaa Types
+    * Strings
+    * Sets
+    * Sorted Sets
+    * Lists
+    * Hashes
+    * Bitmap
+    * Geospatial indexes
   * If you require data durability, you can enable the Redis append-only file feature (AOF). When this feature is enabled, the node writes all of the commands that change cache data to an append-only file. When a node is rebooted and the cache engine starts, the AOF is "replayed." The result is a warm Redis cache with all of the data intact. [Append only files (AOF) in ElastiCache for Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/RedisAOF.html)
+
+* Elasticache for memcached
+  * Can partition data across multiple nodes
+  * Auto detection and recovery of failed nodes
+  * It is not persistent
+  * Multi-Threaded - large nodes with multiple cores or threads
+  * No Multi-AZ or read replicas - When it's gone, it's gone
+  * No support for snapshots
+  * Auto-Discovery feature - No reconfiguring of apps when we add a new node.
+  * 1-20 Nodes in a cluster.
+  * No Encryption
+  * Simple Data Types
+    * String
+    * Objects
+
+* ElastiCache Monitoring
+  * Monitor events with ElastiCache Events
+    * Failure to add node
+    * Success adding node
+    * Modification of an SG
+  * Send a notification to an SNS topic
 
 # Amazon DocumentDB
 
