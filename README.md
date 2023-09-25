@@ -87,6 +87,29 @@ Notes for the AWS Certified Database – Specialty
 
 # Amazon DAX
 
+* Fully Managed Caching Service for DynamoDB
+* Up to 10X Performance - milliseconds to microseconds
+* API Compatible with DynamoDB - No code changes, point your App at DAX
+* Very good for read-heavy workloads
+* Up to 10 read replicas supported
+  * Can be added while the cluster is running
+
+# DynamoDB Streams
+
+* Time ordered sequence of item-level modification to a DDB table
+* Stores in a log for up to 24 hours
+* Near real-time
+* Stream Specification Options
+  * StreamEnabled - true/false
+  * StreamViewType
+    * KEY_ONLY
+    * NEW_IMAGE
+    * OLD_IMAGE
+    * NEW_AND_OLD_IMAGES
+* Integrates with Lambda > "Create Trigger" in table settings.
+  * AWSLambdaDynamoDBExecutionRole
+    * Access DDB and access CW Logs
+
 # Amazon Redshift
 
 * Performance Tuning
@@ -113,7 +136,7 @@ Notes for the AWS Certified Database – Specialty
   * Data is presistent. Can be used as a datastore.
   * Self-service updates (must apply yourself)
   * Backup/Snapshot capabilities
-  * Complex Dtaa Types
+  * Complex Data Types
     * Strings
     * Sets
     * Sorted Sets
@@ -146,6 +169,11 @@ Notes for the AWS Certified Database – Specialty
 
 # Amazon DocumentDB
 
+* DynamoDB Backups
+  * Created asynchronously
+  * Do not consume provisioned throughput of the table
+  * Do not guarantee causal consistency across items (skew usually < 1s)
+  * Cannot pause or cancel the backup operation
 * Amazon DocumentDB (with MongoDB compatibility) keeps a record of events that relate to your clusters, instances, snapshots, security groups, and cluster parameter groups. This information includes the date and time of the event, the source name and source type of the event, and a message that is associated with the event.[DocumentDB Events](https://docs.aws.amazon.com/documentdb/latest/developerguide/managing-events.html)
   * Audit Logs are published to [CloudWatch Logs](https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html)
 
