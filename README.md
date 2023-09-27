@@ -26,6 +26,15 @@ Notes for the AWS Certified Database – Specialty
     * Legacy.
     * Only used for very special needs.
 
+# RDS Trivia
+
+* It is possible to replicate from a on-premises MySQL server to RDS using binary logging.
+* Amazon RDS Performance Maintenance on a Multi-AZ Deployment by...
+  * Perform maintenance on the standby
+  * Promote the standby to primary
+  * Performance maintenance on the old primary, which is now the standby
+  * N.B. Only OS Update - When the DB Engine is updated both the primary & secondary instances are shutdown at the same time.
+
 # Amazon Aurora
 
 * Compatible with MySQL and POstgreSQL
@@ -42,6 +51,13 @@ Notes for the AWS Certified Database – Specialty
   * asynchronous mode (lower impact)
   * [Database Activity Streams](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/DBActivityStreams.html)
   * Amazon Kinesis is required for database activity streams.
+* Backup & Encryption Notes
+  * Aurora Clusters cannot be modified to disable encryption once encrypted.
+  * Cannot convert an unencrypted cluster to an encrypted one.
+  * However, you can restore an unencrypted backup to an encrypted Aurora Cluster.
+    * Specify a KMS encryption key during restore.
+  * You cannot convert an Aurora snapshot to an encrypted snapshot
+    * This is however possible in Amazon RDS.
 
 # Amazon Aurora Serverless
 
@@ -176,6 +192,16 @@ Notes for the AWS Certified Database – Specialty
   * Cannot pause or cancel the backup operation
 * Amazon DocumentDB (with MongoDB compatibility) keeps a record of events that relate to your clusters, instances, snapshots, security groups, and cluster parameter groups. This information includes the date and time of the event, the source name and source type of the event, and a message that is associated with the event.[DocumentDB Events](https://docs.aws.amazon.com/documentdb/latest/developerguide/managing-events.html)
   * Audit Logs are published to [CloudWatch Logs](https://docs.aws.amazon.com/documentdb/latest/developerguide/event-auditing.html)
+* [DocumentDB Events](https://docs.aws.amazon.com/documentdb/latest/developerguide/managing-events.html)
+  * Relate to...
+    * Clusters - i.e. Notification, failure, maintenance, failover
+    * Instances - i.e. Notification, failure, creation, maintenance, deletion, recovery, backup
+    * Snapshots - i.e. backup
+    * Security Groups - i.e. configuration change
+    * Cluster Parameter Groups - i.e. configuration change
+  * Events can be seen...
+    * 24 hours in the web console
+    * 14 days using the DocumentDB API/cli to view events
 
 # Amazon Neptune
 
