@@ -3,15 +3,15 @@ Notes for the AWS Certified Database – Specialty
 
 # Amazon RDS
 
-|Type|Max Replicas|Serverless Option|DB Cloning|Blue/Green Deployments
+| Type | Max Replicas | Serverless Option | DB Cloning | Blue/Green Deployments |
 |----|----|---|---|
-|MySQL|15|No|No|Yes|
-|MariaDB|15|No|No|Yes|
-|PostgreSQL|15|No|No|No|
-|Oracle|5|No|No|No|
-|MSSQL|5|No|No|No|
-|Aurora MySQL|15|Yes|Yes|Yes|
-|Aurora PostgreSQL|15|Yes|Yes|No|
+| MySQL | 15 | No | No | Yes |
+| MariaDB | 15 | No | No | Yes |
+| PostgreSQL | 15 | No | No | No |
+| Oracle |5 | No | No | No |
+| MSSQL | 5 | No | No | No |
+| Aurora MySQL | 15 | Yes | Yes | Yes |
+| Aurora PostgreSQL | 15 | Yes | Yes | No |
 
 * 3 Storage Types available to RDS
   * General Purpose SSD (gp2)
