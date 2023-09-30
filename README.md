@@ -4,7 +4,7 @@ Notes for the AWS Certified Database – Specialty
 # Amazon RDS
 
 | Type | Max Replicas | Serverless Option | DB Cloning | Blue/Green Deployments |
-|----|----|---|---|
+| --- | --- | --- | --- |
 | MySQL | 15 | No | No | Yes |
 | MariaDB | 15 | No | No | Yes |
 | PostgreSQL | 15 | No | No | No |
