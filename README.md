@@ -34,6 +34,9 @@ Notes for the AWS Certified Database – Specialty
   * Promote the standby to primary
   * Performance maintenance on the old primary, which is now the standby
   * N.B. Only OS Update - When the DB Engine is updated both the primary & secondary instances are shutdown at the same time.
+* [Setting up Windows Authentication for SQL Server DB instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerWinAuth.html#USER_SQLServerWinAuth.SettingUp)
+  * An AWS Managed Microsft AD is used.
+  * Can add trusts to on-prem AD (forst trust)
 
 # Amazon Aurora
 
