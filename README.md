@@ -8,7 +8,7 @@ Notes for the AWS Certified Database – Specialty
 | MySQL | 15 | No | No | Yes |
 | MariaDB | 15 | No | No | Yes |
 | PostgreSQL | 15 | No | No | No |
-| Oracle |5 | No | No | No |
+| Oracle | 5 | No | No | No |
 | MSSQL | 5 | No | No | No |
 | Aurora MySQL | 15 | Yes | Yes | Yes |
 | Aurora PostgreSQL | 15 | Yes | Yes | No |
@@ -164,6 +164,7 @@ Notes for the AWS Certified Database – Specialty
     * Bitmap
     * Geospatial indexes
   * If you require data durability, you can enable the Redis append-only file feature (AOF). When this feature is enabled, the node writes all of the commands that change cache data to an append-only file. When a node is rebooted and the cache engine starts, the AOF is "replayed." The result is a warm Redis cache with all of the data intact. [Append only files (AOF) in ElastiCache for Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/RedisAOF.html)
+  * It's not possible to reconfigure the cluster mode in an existing cluster. You have to create a new cluster with "cluster mode" enabled.
 
 * Elasticache for memcached
   * Can partition data across multiple nodes
@@ -178,6 +179,11 @@ Notes for the AWS Certified Database – Specialty
   * Simple Data Types
     * String
     * Objects
+
+| | Read-Replicas | Sharding | Backup & Restore | Multi-Threaded | Encryption | Auth | Port |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Redis | Yes | Yes (Cluster Mode) | Yes | No | Yes (at rest & in-transit) | Yes (requires SSL) | 6379 |
+| memcached | No | Yes | No | Yes | Yes (in-transit) | No (security via SG) | 11211 |
 
 * ElastiCache Monitoring
   * Monitor events with ElastiCache Events
@@ -220,3 +226,6 @@ Notes for the AWS Certified Database – Specialty
 # Amazon Schema Migration Tool
 
 * AWS Schema Conversion Tool (AWS SCT) makes heterogeneous database migrations easy by automatically converting the source database schema and a majority of the custom code to a format compatible with the target database.
+* AWS SCT can produce a migration assessment report
+  * What can and can't be converted by the tool
+  * Estimates the amount of effort to rewrite/re-engineer the DB feature
