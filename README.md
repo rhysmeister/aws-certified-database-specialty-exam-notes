@@ -41,7 +41,7 @@ Notes for the AWS Certified Database – Specialty
     * Create an encrypted copy of a snapshot
     * Restore the encrypted snapshot to a new RDS Instance
     * Use MySQL Replication to catch up with changes on the source
-    * Verifiy data
+    * Verify data
     * Switch connected and redirect traffic to the new instance
     * Limitations:
       * You can't modify an existing unencrypted Amazon RDS DB instance to encrypt the instance.

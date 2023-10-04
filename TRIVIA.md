@@ -11,7 +11,7 @@
 * For applications that need to read or write multiple items, DynamoDB provides the BatchGetItem and BatchWriteItem operations. Using these operations can reduce the number of network round trips from your application to DynamoDB. In addition, DynamoDB performs the individual read or write operations in parallel. Your applications benefit from this parallelism without having to manage concurrency or threading. [Working with items and attributes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
 * RDS PostgreSQL - The event *IO:XactSync* indicates that the instance is spending time waiting for the Aurora storage subsystem to confirm that transaction data was processed. [IO:XactSync](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/apg-waits.xactsync.html)
   * Indicates network saturation or CPU pressure.
-* Prevent an RDS from being access outside the VPC
+* Prevent an RDS from being accessed outside the VPC
   * Ensure "Public acccessability" on the RDS instance is distanced
   * Create a SG that allows traffic on port 3306 only from EC2 Instances.
   * Ensure DB subnet group consist of two private subnets.
