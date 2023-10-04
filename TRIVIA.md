@@ -14,7 +14,7 @@
 * Prevent an RDS from being accessed outside the VPC
   * Ensure "Public acccessability" on the RDS instance is disabled
   * Create a SG that allows traffic on port 3306 only from EC2 Instances.
-  * Ensure DB subnet group consist of two private subnets.
+  * Ensure DB subnet group consists of two private subnets.
 * Amazon Netptune
   * Vertex file - ~id column header required.
   * Edge file - ~id,~from, and to column headers required.
