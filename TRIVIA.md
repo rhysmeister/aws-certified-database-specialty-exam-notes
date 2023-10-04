@@ -12,7 +12,7 @@
 * RDS PostgreSQL - The event *IO:XactSync* indicates that the instance is spending time waiting for the Aurora storage subsystem to confirm that transaction data was processed. [IO:XactSync](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/apg-waits.xactsync.html)
   * Indicates network saturation or CPU pressure.
 * Prevent an RDS from being accessed outside the VPC
-  * Ensure "Public acccessability" on the RDS instance is distanced
+  * Ensure "Public acccessability" on the RDS instance is disabled
   * Create a SG that allows traffic on port 3306 only from EC2 Instances.
   * Ensure DB subnet group consist of two private subnets.
 * Amazon Netptune
