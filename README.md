@@ -37,6 +37,15 @@ Notes for the AWS Certified Database – Specialty
 * [Setting up Windows Authentication for SQL Server DB instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_SQLServerWinAuth.html#USER_SQLServerWinAuth.SettingUp)
   * An AWS Managed Microsft AD is used.
   * Can add trusts to on-prem AD (forst trust)
+  * [Migrate an unencrypted RDS Instance to an encrypted Instance](https://repost.aws/knowledge-center/rds-encrypt-instance-mysql-mariadb)
+    * Create an encrypted copy of a snapshot
+    * Restore the encrypted snapshot to a new RDS Instance
+    * Use MySQL Replication to catch up with changes on the source
+    * Verifiy data
+    * Switch connected and redirect traffic to the new instance
+    * Limitations:
+      * You can't modify an existing unencrypted Amazon RDS DB instance to encrypt the instance.
+      * You can't create an encrypted read replica from an unencrypted instance.
 
 # Amazon Aurora
 
